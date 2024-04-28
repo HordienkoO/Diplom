@@ -51,13 +51,6 @@ app.post('/login', async (req, res) => {
     }
 });
 
-// Добавляем новый маршрут для выхода пользователя
-app.get('/logout', (req, res) => {
-    // Удаление сессии или другая логика выхода пользователя
-    res.redirect('/');
-});
-
-
 app.listen(3005, () => {
     console.log('Server is running on port 3005');
 });
