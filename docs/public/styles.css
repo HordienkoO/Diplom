@@ -1,0 +1,538 @@
+:root{
+    --color1: #95684d;
+    --color2: #ffcdb2;
+}
+
+body {
+    background: var(--color1);
+    background: -moz-linear-gradient(left, var(--color1) 0%, var(--color2) 100%);
+    background: -webkit-linear-gradient(left, var(--color1) 0%, var(--color2) 100%);
+    background: linear-gradient(to right, var(--color1) 0%, var(--color2) 100%);
+    background-size: contain;
+    margin: 0;
+    font-family: 'Comic Sans', cursive;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+body.loaded {
+    opacity: 1;
+}
+
+.header, .h11111, .slider, .slider1 {
+    opacity: 0;
+}
+
+.header {
+    animation: fadeInRight 1s 0.5s forwards;
+}
+
+.h11111 {
+    animation: fadeInRight 1s 0.6s forwards;
+}
+
+.slider {
+    animation: fadeInRight 1s 1.5s forwards;
+}
+
+.slider1 {
+    animation: fadeInRight 1s 2s forwards;
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+header {
+    background: var(--color1);
+    background: -moz-linear-gradient(left, var(--color1) 0%, var(--color2) 100%);
+    background: -webkit-linear-gradient(left, var(--color1) 0%, var(--color2) 100%);
+    background: linear-gradient(to right, var(--color1) 0%, var(--color2) 100%);
+    background-size: contain;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    animation: bounceLogo 2s 1 alternate;
+}
+
+.logo h1{
+    font-size: 1.5em;
+    animation: colorag 3s infinite alternate;
+}
+
+@keyframes colorag {
+    0% {
+        color: var(--color1)
+    }
+    100% {
+        color: var(--color2);
+    }
+}
+
+@keyframes bounceLogo {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+nav {
+    display: flex;
+}
+
+.categories {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    margin-right: 10px;
+}
+
+.categories li {
+    margin-right: 15px;
+}
+
+.categories a {
+    text-decoration: none;
+    color: #fff;
+}
+
+form {
+    margin-right: 10px;
+}
+
+.heart-icon {
+    color: var(--color1);
+    font-size: 26px;
+    cursor: pointer;
+    margin-right: -360px;
+    transition: transform 0.5s ease;
+}
+
+.heart-icon:hover {
+    transform: rotate(360deg);
+}
+
+.slider,
+.slider1 {
+    overflow: hidden;
+    white-space: nowrap;
+    margin-top: 20px;
+    position: relative;
+}
+
+.slide {
+    display: inline-block;
+    width: 360px;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 20px;
+    font-size: 1.2em;
+    background-color: var(--color1);
+    position: relative;
+    height: 210px;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide:hover {
+    transform: scale(1.05);
+}
+
+.slide img.anime-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.slide:hover img.anime-image {
+    transform: scale(1.1);
+}
+
+.info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    text-align: center;
+    width: 80%;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.slide:hover .info {
+    opacity: 0;
+}
+
+.info h2 {
+    margin-bottom: 10px;
+    font-size: 1.5em;
+}
+
+.info p {
+    font-size: 1em;
+}
+
+.arrow {
+    font-size: 4em;
+    color: #e9b99e;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 1;
+}
+
+.left-arrow {
+    left: 10px;
+}
+
+.right-arrow {
+    right: 10px;
+}
+
+.left-side-arrow {
+    left: 40px;
+}
+
+.h11111 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    margin: 0;
+    background: var(--color1);
+    background: -moz-linear-gradient(left, var(--color1) 0%, var(--color2) 100%);
+    background: -webkit-linear-gradient(left, var(--color1) 0%, var(--color2) 100%);
+    background: linear-gradient(to right, var(--color1) 0%, var(--color2) 100%);
+    background-size: contain;
+    font-size: 2em;
+    color: var(--color1);
+}
+
+.typing-demo {
+    width: 15ch;
+    animation: typing 2s steps(15), blink 0.5s step-end infinite alternate;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid;
+    font-family: monospace;
+    font-size: 2em;
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+.large-slide {
+    width: 80%;
+    height: 80%;
+}
+
+.large-slide .info {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 0 0 15px 15px;
+    position: absolute;
+    bottom: 0;
+    left: 11110;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+form {
+    position: relative;
+}
+
+input[type="search"] {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  width: 200px;
+}
+
+button[type="submitt"] {
+  background-color: var(--color1);
+  color: #fff;
+  border: none;
+  padding: 11.5px;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.all-anime-container {
+  position: relative;
+}
+
+.all-anime-button {
+  background-color: var(--color1);
+  color: #fff;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+  font-size: 1.2em;
+  transition: background-color 0.3s ease-in-out;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.all-anime-button:hover {
+  background-color: var(--color2);
+  transform: scale(0.9);
+}
+
+.bxs-user{
+    color: var(--color1);
+    font-size: 28px;
+}
+
+.bxs-user:hover{
+    color: #f9b089;
+}
+
+/* Стилі для модального вікна */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000000000000000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+  }
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+  }
+  
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  button[type="submit"] {
+    background-color: var(--color1);
+    color: white;
+    padding: 10px 208.5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #f9b089;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: calc(102% - 0px);
+    padding: 10px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.modal-content h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--color1);
+}
+
+
+
+ /* Меню */
+ #menu__toggle {
+    opacity: 0;
+  }
+ 
+  .menu__btn {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 30px;
+    left: 20px;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    z-index: 1002;
+  }
+  .menu__btn > span,
+  .menu__btn > span::before,
+  .menu__btn > span::after {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color2);
+  }
+  .menu__btn > span::before {
+    content: '';
+    top: -8px;
+  }
+  .menu__btn > span::after {
+    content: '';
+    top: 8px;
+  }
+
+.menu__box {
+    display: block;
+    position: fixed;
+    visibility: hidden;
+    top: 0;
+    left: -100%;
+    width: 300px;
+    height: 100%;
+    margin: 0;
+    padding: 120px 0;
+    list-style: none;
+    text-align: center;
+    background-color: var(--color1);
+    box-shadow: 1px 0px 6px rgba(0, 0, 0, .2);
+    z-index: 1001;
+  }
+  
+  .menu__item {
+    display: block;
+    padding: 12px 24px;
+    color: whitesmoke;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .menu__item:hover {
+    background-color: var(--color2);
+  }
+  
+  #menu__toggle:checked ~ .menu__btn > span {
+    transform: rotate(45deg);
+  }
+  #menu__toggle:checked ~ .menu__btn > span::before {
+    top: 0;
+    transform: rotate(0);
+  }
+  #menu__toggle:checked ~ .menu__btn > span::after {
+    top: 0;
+    transform: rotate(90deg);
+  }
+  #menu__toggle:checked ~ .menu__box {
+    visibility: visible;
+    left: 0;
+  }
+  .menu__btn > span,
+.menu__btn > span::before,
+.menu__btn > span::after {
+  transition-duration: .25s;
+}
+.menu__box {
+  transition-duration: .25s;
+}
+.menu__item {
+  transition-duration: .25s;
+}
+
+.menu__btn.hidden {
+      display: none;
+    }
+
+    footer {
+        background-color: var(--color1);
+        color: #fff;
+    }
+    
+    .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .contact-info, .social-icons {
+        flex: 1;
+        padding: 0 20px;
+    }
+    
+    .social-icons {
+        text-align: right;
+    }
+    
+    .icons a {
+        font-size: 60px;
+        display: inline-block;
+        margin-left: 10px;
+        transition: transform 0.3s ease, color 0.3s ease;
+        color: var(--color2);
+    }
+    
+    .icons a:hover {
+        transform: scale(1.2);
+    }
+    
+    .icons a:hover i {
+        color: #ffdecc;
+    }
+
+    .registerButton{
+        color: yellowgreen;
+    }
+
+    .modal-content p {
+        color: black;
+    }
