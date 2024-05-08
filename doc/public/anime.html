@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="2.jpg" type="image/x-icon">
+    <title>onistar</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="anime-styles.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="help.css">
+</head>
+<body>
+
+<header class="header1">
+    <div class="hamburger-menu">
+        <input id="menu__toggle" type="checkbox" />
+        <label class="menu__btn" for="menu__toggle">
+          <span></span>
+        </label>
+        <ul class="menu__box">
+            <li><a class="menu__item" href="index.html">Головна</a></li>
+            <li><a class="menu__item" href="anime.html">Аніме</a></li>
+            <li><a class="menu__item" href="contact.html">Контакти</a></li>
+        </ul>
+      </div>
+    <div class="logo"><h1>onistar</h1></div>
+    <div id="output"></div>
+    <div class="category-menu-container">
+        <button class="category-menu-toggle">Категорії</button>
+        <div class="category-menu">
+            <ul>
+                <li><a href="#" class="category-link">Бойовик</a></li>
+                <li><a href="#" class="category-link">Комедія</a></li>
+                <li><a href="#" class="category-link">Драма</a></li>
+            </ul>
+        </div>
+    </div>
+    &nbsp;&nbsp;
+    <form action="" method="get">
+        <input name="s" placeholder="Введіть назву..." type="search">
+        <button type="submitt">Пошук</button>
+    </form>
+    
+    
+    <i id="loginButton" class="bx bxs-user"> <span id="usernameSpan"></span></i>
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Увійти до системи</h2>
+            <form id="loginForm" action="/login" method="POST">
+                <input type="text" name="username" placeholder="Логін" required><br>
+                <input type="password" name="password" placeholder="Пароль" required><br>
+                <button type="submit">Вхід</button>
+            </form>
+            <p>Не маєте аккаунту?</p>
+            <a href="register.html" id="registerButton">Реєстрація</a>
+        </div>
+    </div>
+</header>
+
+
+<div class="anime-list">
+    <div class="anime-item" data-title="SAO" data-episodes="25">
+        <img src="img/1.jpeg" alt="Аніме 1">
+        <div class="anime-details">
+            <h3>SAO</h3>
+            <p class="description">Аніме для любителів ігор.</p>
+        </div>
+    </div>
+    <div class="anime-item" data-title="Зошит смерті" data-episodes="12">
+        <img src="img/2.png" alt="Аніме 2">
+        <div class="anime-details">
+            <h3>Зошит смерті</h3>
+            <p class="description">Опис...</p>
+        </div>
+    </div>
+    <div class="anime-item" onmouseover="showDescription(this)" onmouseout="hideDescription(this)">
+        <img src="img/3.jpg" alt="Аніме 3">
+        <div class="anime-details">
+        <h3>FATE</h3>
+        <p class="description">Опис...</p>
+        </div>
+    </div>
+    <div class="anime-item" onmouseover="showDescription(this)" onmouseout="hideDescription(this)">
+        <img src="img/4.jpeg" alt="Аніме 4">
+        <div class="anime-details">
+        <h3>Магічна битва</h3>
+        <p class="description">Опис...</p>
+        </div>
+    </div>
+    <div class="anime-item" onmouseover="showDescription(this)" onmouseout="hideDescription(this)">
+        <img src="img/5.jpg" alt="Аніме 4">
+        <div class="anime-details">
+        <h3>Інша</h3>
+        <p class="description">Опис...</p>
+        </div>
+    </div>
+    <div class="anime-item" onmouseover="showDescription(this)" onmouseout="hideDescription(this)">
+        <img src="img/6.jpg" alt="Аніме 5">
+        <div class="anime-details">
+        <h3>Хелсінг</h3>
+        <p class="description">Опис...</p>
+        </div>
+    </div>
+    <div class="anime-item" onmouseover="showDescription(this)" onmouseout="hideDescription(this)">
+        <img src="img/6.jpg" alt="Аніме 6">
+        <div class="anime-details">
+        <h3>Назва</h3>
+        <p class="description">Опис...</p>
+        </div>
+    </div>
+    <div class="anime-item" onmouseover="showDescription(this)" onmouseout="hideDescription(this)">
+        <img src="img/6.jpg" alt="Аніме 7">
+        <div class="anime-details">
+        <h3>Назва</h3>
+        <p class="description">Опис...</p>
+        </div>
+    </div>
+    <div class="anime-item" onmouseover="showDescription(this)" onmouseout="hideDescription(this)">
+        <img src="img/6.jpg" alt="Аніме 8">
+        <div class="anime-details">
+        <h3>Назва</h3>
+        <p class="description">Опис...</p>
+        </div>
+    </div>
+    <div class="anime-item" onmouseover="showDescription(this)" onmouseout="hideDescription(this)">
+        <img src="img/6.jpg" alt="Аніме 9">
+        <div class="anime-details">
+        <h3>Назва</h3>
+        <p class="description">Опис...</p>
+        </div>
+    </div>
+    <div class="anime-item" onmouseover="showDescription(this)" onmouseout="hideDescription(this)">
+        <img src="img/6.jpg" alt="Аніме 10">
+        <div class="anime-details">
+        <h3>Назва</h3>
+        <p class="description">Опис...</p>
+        </div>
+    </div>
+    <div class="anime-item" onmouseover="showDescription(this)" onmouseout="hideDescription(this)">
+        <img src="img/6.jpg" alt="Аніме 10">
+        <div class="anime-details">
+        <h3>Назва</h3>
+        <p class="description">Опис...</p>
+        </div>
+    </div>
+</div>
+
+<a href="index.html">
+    <div class="all-anime-container1">
+        <button class="all-anime-button1">На головну</button>
+    </div>
+</a> 
+
+<script src="script.js"></script>
+<script src="anime-script.js"></script>
+<script src="register.js"></script>
+
+<script>
+        function openPlayer(videoSource) {
+            const playerPageUrl = "player.html?video=" + encodeURIComponent(videoSource);
+        
+            window.open(playerPageUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
