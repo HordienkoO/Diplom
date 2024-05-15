@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+
+<style>
+    :root{
+        --color1: #95684d;
+        --color2: #ffcdb2;
+    }
+    body {
+        background: var(--color1);
+        background: -moz-linear-gradient(left, var(--color1) 0%, var(--color2) 100%);
+        background: -webkit-linear-gradient(left, var(--color1) 0%, var(--color2) 100%);
+        background: linear-gradient(to right, var(--color1) 0%, var(--color2) 100%);
+        background-size: contain;
+        margin: 0;
+        font-family: 'Comic Sans', cursive;
+    }
+    
+    .form {
+        width: 340px;
+        height: 440px;
+        background: var(--color1);
+        border-radius: 8px;
+        box-shadow: 0 0 40px -10px #000;
+        margin: calc(35vh - 200px) auto;
+        padding: 20px 30px;
+        max-width: calc(100vw - 40px);
+        box-sizing: border-box;
+        font-family: 'Montserrat', sans-serif;
+        position:sticky;
+    }
+    
+    h2 {
+        margin: 10px 0;
+        padding-bottom: 10px;
+        width: 180px;
+        color: var(--color2);
+        border-bottom: 3px solid var(--color2);
+    }
+    
+    input {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        background: none;
+        outline: none;
+        resize: none;
+        border: 0;
+        font-family: 'Montserrat', sans-serif;
+        transition: all 0.3s;
+        border-bottom: 2px solid var(--color2);
+        color: #fff;
+    }
+    
+    input::placeholder {
+        color: #ccc;
+    }
+    
+    input:focus {
+        border-bottom: 2px solid var(--color2);
+    }
+    
+    p:before {
+        content: attr(type);
+        display: block;
+        margin: 28px 0 0;
+        font-size: 14px;
+        color: var(--color2);
+    }
+    
+    button {
+        float: right;
+        padding: 8px 12px;
+        margin: 8px 0 0;
+        font-family: 'Montserrat', sans-serif;
+        border: 2px solid #ffcdb2;
+        background: 0;
+        color: #fff;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    
+    button:hover {
+        background:var(--color2);
+        color: #fff;
+    }
+    
+    .cont {
+        content: 'Hi';
+        position: absolute;
+        bottom: -15px;
+        right: -20px;
+        background: var(--color1);
+        color: #fff;
+        width: 320px;
+        padding: 16px 4px 16px 0;
+        border-radius: 6px;
+        font-size: 13px;
+        box-shadow: 10px 10px 40px -14px #000;
+    }
+    
+    span {
+        margin: 0 5px 0 15px;
+    }
+    
+    .all-anime-container1 {
+        position: relative;
+      }
+      
+      .all-anime-button1 {
+        background-color: var(--color1);
+        color: #fff;
+        padding: 15px 25px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        margin-top: 0px;
+        font-size: 1.2em;
+        transition: background-color 0.3s ease-in-out;
+        position: absolute;
+        top: -60px;
+        left: 20px;
+      }
+      
+      .all-anime-button1:hover {
+        background-color: var(--color2);
+      }
+
+      .polygon {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .polygon img {
+        width: 100%;
+        height: auto;
+        clip-path: url(#myClip);
+    }
+</style>
+
+</head>
+<body>
+
+<div class="polygon">
+    <img src="https://pluggedin.ru/images/1-bigTopImage_2023_12_17_19_28_44.jpeg" alt="Anime">
+    <svg width="0" height="0">
+        <defs>
+            <clipPath id="myClip" clipPathUnits="objectBoundingBox">
+                <polygon points="0.05 0.05, 1 0.1, 1 1, 0.75 1, 0.75 0.75, 0.6 0.75, 0.2 1, 0.8 0.111"></polygon>
+            </clipPath>
+        </defs>
+    </svg>
+</div>
+
+    <form class="form">
+        <h2>Зв'язатися</h2>
+        <p type="Name:"><input id="nameInput" placeholder="Напишіть Ваше ім'я сюди.."></input></p>
+        <p type="Email:"><input id="emailInput" placeholder="Дайте нам знати, як з вами зв'язатися.."></input></p>
+        <p type="Message:"><input id="messageInput" placeholder="Що б ви хотіли нам сказати.."></input></p>
+        <button type="button" onclick="sendEmail()">Відправити</button>
+        <div class="cont">
+          <span class="fa fa-phone"></span>000 111 222 333
+          <span class="fa fa-envelope-o"></span> qeffdbfg@gmail.com
+        </div>
+      </form>
+
+      <br><br><br><br><br><br><br><br><br>
+      <a href="index.html">
+        <div class="all-anime-container1">
+            <button class="all-anime-button1">На головну</button>
+        </div>
+    </a>
+
+    <script>
+        function sendEmail() {
+            var name = document.getElementById("nameInput").value;
+            var email = document.getElementById("emailInput").value;
+            var message = document.getElementById("messageInput").value;
+            
+            var subject = "Повідомлення від " + name;
+            var body = "Email: " + email + "\nПовідомлення: " + message;
+    
+            window.location.href = "mailto:werribeeq@gmail.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+        }
+    </script>
+    
+</body>
+</html>

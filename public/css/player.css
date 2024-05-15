@@ -1,0 +1,349 @@
+:root {
+    --color1: #95684d;
+    --color2: #ffcdb2;
+}
+
+body {
+    background: var(--color1);
+    background: -moz-linear-gradient(left, var(--color1) 0%, var(--color2) 100%);
+    background: -webkit-linear-gradient(left, var(--color1) 0%, var(--color2) 100%);
+    background: linear-gradient(to right, var(--color1) 0%, var(--color2) 100%);
+    background-size: contain;
+    margin: 0;
+    font-family: 'Comic Sans', cursive;
+}
+
+.header1 {
+    background-size: contain;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.player{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.container_des {
+    max-width: 555px;
+    word-wrap: break-word;
+    text-align: justify;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--color1);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    padding: 10px;
+}
+
+.episode-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 8px 0;
+    margin: 5px 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-content button:first-child {
+    margin-top: 0;
+}
+
+.dropdown-content button:last-child {
+    margin-bottom: 0;
+}
+
+.dropdown-content button:hover {
+    background-color: var(--color2);
+}
+
+button {
+    background-color: var(--color1);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #63472f;
+}
+
+button:focus {
+    outline: none;
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+.bxs-user{
+    color: var(--color1);
+    font-size: 28px;
+}
+
+.bxs-user:hover{
+    color: #f9b089;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000000000000000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+  }
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+  }
+  
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  button[type="submit"] {
+    font-family: 'Comic Sans', cursive;
+    font-size: 16px;
+    color: var(--color1);
+    text-decoration: none;
+    padding: 8px 200px;
+    background-color: white;
+    border: 2px solid var(--color1);
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: var(--color1);
+    color: white;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: calc(102% - 0px);
+    padding: 10px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.modal-content h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--color1);
+}
+
+ /* Меню */
+ #menu__toggle {
+    opacity: 0;
+  }
+ 
+  .menu__btn {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 15px;
+    left: 20px;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    z-index: 1002;
+  }
+  .menu__btn > span,
+  .menu__btn > span::before,
+  .menu__btn > span::after {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color2);
+  }
+  .menu__btn > span::before {
+    content: '';
+    top: -8px;
+  }
+  .menu__btn > span::after {
+    content: '';
+    top: 8px;
+  }
+
+.menu__box {
+    display: block;
+    position: fixed;
+    visibility: hidden;
+    top: 0;
+    left: -100%;
+    width: 300px;
+    height: 100%;
+    margin: 0;
+    padding: 120px 0;
+    list-style: none;
+    text-align: center;
+    background-color: var(--color1);
+    box-shadow: 1px 0px 6px rgba(0, 0, 0, .2);
+    z-index: 1001;
+  }
+  
+  .menu__item {
+    display: block;
+    padding: 12px 24px;
+    color: whitesmoke;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .menu__item:hover {
+    background-color: var(--color2);
+  }
+  
+  #menu__toggle:checked ~ .menu__btn > span {
+    transform: rotate(45deg);
+  }
+  #menu__toggle:checked ~ .menu__btn > span::before {
+    top: 0;
+    transform: rotate(0);
+  }
+  #menu__toggle:checked ~ .menu__btn > span::after {
+    top: 0;
+    transform: rotate(90deg);
+  }
+  #menu__toggle:checked ~ .menu__box {
+    visibility: visible;
+    left: 0;
+  }
+  .menu__btn > span,
+.menu__btn > span::before,
+.menu__btn > span::after {
+  transition-duration: .25s;
+}
+.menu__box {
+  transition-duration: .25s;
+}
+.menu__item {
+  transition-duration: .25s;
+}
+
+.menu__btn.hidden {
+      display: none;
+    }
+
+    footer {
+        background-color: var(--color1);
+        color: #fff;
+    }
+    
+    .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .contact-info, .social-icons {
+        flex: 1;
+        padding: 0 20px;
+    }
+    
+    .social-icons {
+        text-align: right;
+    }
+    
+    .icons a {
+        font-size: 60px;
+        display: inline-block;
+        margin-left: 10px;
+        transition: transform 0.3s ease, color 0.3s ease;
+        color: var(--color2);
+    }
+    
+    .icons a:hover {
+        transform: scale(1.2);
+    }
+    
+    .icons a:hover i {
+        color: #ffdecc;
+    }
+
+    a#registerButton{
+            color: var(--color1);
+            text-decoration: none;
+            padding: 6px 16px;
+            background-color: white;
+            border: 2px solid var(--color1);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+    a#registerButton:hover {
+            background-color: var(--color1);
+            color: white;
+        }
+
+    .modal-content p{
+        color: var(--color1);
+    }
+    
+    #usernameSpan{
+        color: var(--color1);
+        font-size: 90%;
+    }
+    #usernameSpan:hover{
+        color: #f9b089;
+    }
+
+
+    a#logoutButton{
+        display: none;
+        color: var(--color1);
+        text-decoration: none;
+        padding: 6px 200px;
+        background-color: white;
+        border: 2px solid var(--color1);
+        border-radius: 5px;
+        transition: all 0.3s ease;
+    }
+
+a#logoutButton:hover {
+        background-color: var(--color1);
+        color: white;
+    }

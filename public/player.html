@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Player</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="css/player.css">
+</head>
+<body>
+    <header class="header1">
+        <div class="hamburger-menu">
+            <input id="menu__toggle" type="checkbox" />
+            <label class="menu__btn" for="menu__toggle">
+              <span></span>
+            </label>
+            <ul class="menu__box">
+                <li><a class="menu__item" href="index.html">Головна</a></li>
+                <li><a class="menu__item" href="anime.html">Аніме</a></li>
+                <li><a class="menu__item" href="contact.html">Контакти</a></li>
+            </ul>
+          </div>
+        
+          <i id="loginButton" class="bx bxs-user"> <span id="usernameSpan"></span></i>
+          <div id="loginModal" class="modal">
+              <div class="modal-content">
+                  <span class="close">&times;</span>
+                  <h2>Увійти до системи</h2>
+                  <form id="loginForm" action="/login" method="POST">
+                      <input type="text" name="username" placeholder="Логін" required><br>
+                      <input type="password" name="password" placeholder="Пароль" required><br>
+                      <button type="submit">Вхід</button>
+                  </form>
+                  <p>Не маєте аккаунту?</p>
+                  <a href="register.html" id="registerButton">Реєстрація</a>
+                  <br><br>
+                  <a href="/logout" id="logoutButton">Вихід</a>
+      
+              </div>
+          </div>
+    </header>
+    
+<br>
+<div id="player">
+    <iframe id="videoPlayer" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+    <div id="episodeSelector">
+        <div class="episode-dropdown">
+            <button id="selectedEpisodeBtn" onclick="toggleDropdown()">Серії</button>
+            <div id="dropdownContent" class="dropdown-content"></div>
+        </div>
+    </div>
+    <div class="container_des">
+        <div id="description"></div>
+        <div id="categories"></div>
+    </div>
+</div>
+
+<script src="js/player.js"></script>
+<script src="js/script.js"></script>
+<script src="js/anime-script.js"></script>
+
+</body>
+</html>
