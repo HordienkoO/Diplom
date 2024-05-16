@@ -130,6 +130,24 @@ window.onscroll = function() {
   prevScrollPos = currentScrollPos;
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+    const menuToggle = document.getElementById("menu__toggle");
+    const menuBox = document.querySelector(".menu__box");
+    const menuBtn = document.querySelector(".menu__btn");
+
+    document.addEventListener("click", function(event) {
+        if (!menuBox.contains(event.target) && event.target !== menuToggle && menuToggle.checked) {
+            menuToggle.checked = false;
+        }
+    });
+
+    menuBtn.addEventListener("click", function(event) {
+        event.stopPropagation(); // Зупиняємо подальше поширення події
+    });
+});
+
+
+
 // на плеєр
 document.addEventListener('DOMContentLoaded', () => {
     const sliderItems = document.querySelectorAll('.slider .slide');
