@@ -7,8 +7,7 @@ const bcrypt = require('bcrypt');
 const User = require('./models/user');
 
 const app = express();
-
-mongoose.connect('mongodb://localhost:27017/nodejs-auth', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb+srv://qwertywerribeeq:qwertywerribeeq@cluster0.yxzokh3.mongodb.net/nodejs-auth', { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -78,6 +77,6 @@ app.get('/logout', (req, res) => {
     res.redirect('/');
 });
 
-app.listen(3005, () => {
+app.listen(1010, () => {
     console.log('Server is running on port 3005');
 });
