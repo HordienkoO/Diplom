@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path');
 const bcrypt = require('bcrypt');
+const cors = require('cors');
 const User = require('./models/user');
 require('dotenv').config();
 
@@ -12,6 +13,7 @@ const app = express();
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
@@ -20,8 +22,9 @@ app.use(session({
     saveUninitialized: true
 }));
 
-app.get('/test', (req, res) => {
-    res.send('Test route working');
+app.use((req, res, next) => {
+    console.log(`${req.method} request for '${req.url}'`);
+    next();
 });
 
 app.get('/', (req, res) => {
@@ -30,14 +33,6 @@ app.get('/', (req, res) => {
 
 app.get('/register', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'register.html'));
-});
-
-app.get('/getUsername', (req, res) => {
-    if (req.session.username) {
-        res.json({ username: req.session.username });
-    } else {
-        res.json({ username: '' });
-    }
 });
 
 app.post('/register', async (req, res) => {
@@ -54,7 +49,7 @@ app.post('/register', async (req, res) => {
 });
 
 app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
 
 app.post('/login', async (req, res) => {
