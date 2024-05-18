@@ -9,6 +9,17 @@ window.onload = function() {
             loginModal.style.display = 'block';
         });
 
+        fetch('/getUsername')
+            .then(response => response.json())
+            .then(data => {
+                const { username } = data;
+                if (username) {
+                    usernameSpan.textContent = username;
+                    loggedIn = true;
+                    loginModal.style.display = 'none';
+                }
+            });
+
         // Блокуємо вікно після входу
         const forms = document.querySelectorAll('form');
         forms.forEach(form => {
@@ -32,7 +43,6 @@ window.onload = function() {
             logoutButton.style.display = 'none'; 
         }
     });
-
 
 // Слайдери
 document.addEventListener('DOMContentLoaded', function() {
