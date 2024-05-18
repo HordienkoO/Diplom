@@ -29,6 +29,7 @@ app.get('/register', (req, res) => {
 });
 
 app.get('/getUsername', (req, res) => {
+    console.log('Запит на /getUsername');
     if (req.session.username) {
         res.json({ username: req.session.username });
     } else {
