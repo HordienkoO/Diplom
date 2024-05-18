@@ -16,8 +16,33 @@ window.onload = function() {
                 const { username } = data;
                 if (username) {
                     usernameSpan.textContent = username;
+                    loggedIn = true;
                 }
             });
+
+        // Блокуємо вікно після входу
+        const forms = document.querySelectorAll('form');
+        forms.forEach(form => {
+            form.addEventListener('submit', function(event) {
+                if (loggedIn) {
+                    event.preventDefault();
+                    alert('Ви вже увійшли в систему!');
+                }
+            });
+        });
+    };
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const logoutButton = document.getElementById('logoutButton');
+        
+        const isLoggedIn = true;
+    
+        if (isLoggedIn) {
+            logoutButton.style.display = 'block'; 
+        } else {
+            logoutButton.style.display = 'none'; 
+        }
+    });
 
 // Слайдери
 document.addEventListener('DOMContentLoaded', function() {
