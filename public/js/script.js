@@ -1,38 +1,40 @@
 // Fetch username and display it
 window.onload = function() {
     document.body.classList.add('loaded');
-    const loginButton = document.getElementById('loginButton');
-    const loginModal = document.getElementById('loginModal');
-    const usernameSpan = document.getElementById('usernameSpan');
-    let loggedIn = false;
+   const loginButton = document.getElementById("loginButton");
+    const loginModal = document.getElementById("loginModal");
+    const closeButton = document.getElementsByClassName("close")[0];
+    const usernameSpan = document.getElementById("usernameSpan");
+    const logoutButton = document.getElementById("logoutButton");
 
-    loginButton.addEventListener('click', function() {
-        loginModal.style.display = 'block';
-    });
+    loginButton.onclick = function() {
+        loginModal.style.display = "block";
+    }
 
-    fetch('/getUsername')
-        .then(response => response.json())
-        .then(data => {
-            const { username } = data;
-            if (username) {
-                usernameSpan.textContent = username;
-                loggedIn = true;
-                loginModal.style.display = 'none';
+    closeButton.onclick = function() {
+        loginModal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == loginModal) {
+            loginModal.style.display = "none";
+        }
+    }
+
+    async function checkUserLogin() {
+        try {
+            const response = await fetch('/user');
+            if (response.ok) {
+                const data = await response.json();
+                usernameSpan.textContent = data.username;
             }
-        });
+        } catch (error) {
+            console.error('Error fetching user data:', error);
+        }
+    }
 
-    // Prevent form submission if already logged in
-    const forms = document.querySelectorAll('form');
-    forms.forEach(form => {
-        form.addEventListener('submit', function(event) {
-            if (loggedIn) {
-                event.preventDefault();
-                alert('You are already logged in!');
-            }
-        });
-    });
-};
-
+    checkUserLogin();
+});
 
 // Слайдери
 document.addEventListener('DOMContentLoaded', function() {
