@@ -29,15 +29,6 @@ app.get('/register', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'register.html'));
 });
 
-// app.get('/getUsername', (req, res) => {
-//     console.log('Запит на /getUsername');
-//     if (req.session.username) {
-//         res.json({ username: req.session.username });
-//     } else {
-//         res.status(404).json({ error: 'Не знайдено' });
-//     }
-// });
-
 app.post('/register', async (req, res) => {
     try {
         const { username, email, password } = req.body;
@@ -67,6 +58,15 @@ app.post('/login', async (req, res) => {
     } catch (error) {
         console.error(error.message);
         res.status(500).send(`<script>alert("Не удалось! Ошибка: "); window.location.href = "/";</script>` + error.message);
+    }
+});
+
+app.get('/getUsername', (req, res) => {
+    console.log('Запит на /getUsername');
+    if (req.session.username) {
+        res.json({ username: req.session.username });
+    } else {
+        res.status(404).json({ error: 'Не знайдено' });
     }
 });
 
