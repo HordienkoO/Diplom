@@ -3,7 +3,6 @@ const session = require('express-session');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path');
-const bcrypt = require('bcrypt');
 const User = require('./models/user');
 require('dotenv').config();
 
@@ -19,6 +18,8 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
+
+// Routes
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
@@ -40,8 +41,8 @@ app.get('/getUsername', (req, res) => {
 app.post('/register', async (req, res) => {
     try {
         const { username, email, password } = req.body;
-        const hashedPassword = await bcrypt.hash(password, 10);
-        const user = new User({ username, email, password: hashedPassword });
+
+        const user = new User({ username, email, password });
         await user.save();
         res.redirect('/login');
     } catch (error) {
@@ -59,13 +60,7 @@ app.post('/login', async (req, res) => {
         const { username, password } = req.body;
         const user = await User.findOne({ username });
         if (user) {
-            const isPasswordValid = await bcrypt.compare(password, user.password);
-            if (isPasswordValid) {
-                req.session.username = username;
-                res.send(`<script>alert("Вы вошли в систему! Спасибо, ${username}"); window.location.href = "/";</script>`);
-            } else {
-                res.status(401).send(`<script>alert("Неправильные данные. Попробуйте еще!"); window.location.href = "/";</script>`);
-            }
+
         } else {
             res.status(401).send(`<script>alert("Неправильные данные. Попробуйте еще!"); window.location.href = "/";</script>`);
         }
