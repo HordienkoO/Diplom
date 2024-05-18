@@ -5,9 +5,11 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const bcrypt = require('bcrypt');
 const User = require('./models/user');
+require('dotenv').config();
 
 const app = express();
-mongoose.connect('mongodb+srv://qwertywerribeeq:qwertywerribeeq@cluster0.yxzokh3.mongodb.net/nodejs-auth', { useNewUrlParser: true, useUnifiedTopology: true });
+
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -37,7 +39,7 @@ app.get('/getUsername', (req, res) => {
 app.post('/register', async (req, res) => {
     try {
         const { username, email, password } = req.body;
-        const hashedPassword = await bcrypt.hash(password, 10); // хеш пароля
+        const hashedPassword = await bcrypt.hash(password, 10);
         const user = new User({ username, email, password: hashedPassword });
         await user.save();
         res.redirect('/login');
@@ -56,19 +58,19 @@ app.post('/login', async (req, res) => {
         const { username, password } = req.body;
         const user = await User.findOne({ username });
         if (user) {
-            const isPasswordValid = await bcrypt.compare(password, user.password); // Порівняти хеш
+            const isPasswordValid = await bcrypt.compare(password, user.password);
             if (isPasswordValid) {
                 req.session.username = username;
-                res.send(`<script>alert("Ви увійшли в систему! Дякуємо, ${username}"); window.location.href = "/";</script>`);
+                res.send(`<script>alert("Вы вошли в систему! Спасибо, ${username}"); window.location.href = "/";</script>`);
             } else {
-                res.status(401).send(`<script>alert("Неправильні дані. Спробуйте ще!"); window.location.href = "/";</script>`);
+                res.status(401).send(`<script>alert("Неправильные данные. Попробуйте еще!"); window.location.href = "/";</script>`);
             }
         } else {
-            res.status(401).send(`<script>alert("Неправильні дані. Спробуйте ще!"); window.location.href = "/";</script>`);
+            res.status(401).send(`<script>alert("Неправильные данные. Попробуйте еще!"); window.location.href = "/";</script>`);
         }
     } catch (error) {
         console.error(error.message);
-        res.status(500).send(`<script>alert("Не вдалося! Помилка: "); window.location.href = "/";</script>` + error.message);
+        res.status(500).send(`<script>alert("Не удалось! Ошибка: "); window.location.href = "/";</script>` + error.message);
     }
 });
 
@@ -77,6 +79,7 @@ app.get('/logout', (req, res) => {
     res.redirect('/');
 });
 
-app.listen(1010, () => {
-    console.log('Server is running on port 3005');
+const PORT = process.env.PORT || 1010;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });

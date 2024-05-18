@@ -17,11 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
     for (let i = 1; i <= episodes; i++) {
         const button = document.createElement('button');
         button.textContent = `Серія ${i}`;
-        button.setAttribute('data-episode', i); // Додаємо атрибут data-episode з номером серії
+        button.setAttribute('data-episode', i);
         button.onclick = () => changeEpisode(title, i, button.textContent);
         dropdownContent.appendChild(button);
     }
-    // Отримуємо перший елемент з атрибутом data-episode="1" і спрацьовуємо клік на нього
+ 
     const firstEpisode = dropdownContent.querySelector('[data-episode="1"]');
     if (firstEpisode) {
         firstEpisode.click();

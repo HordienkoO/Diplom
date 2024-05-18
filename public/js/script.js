@@ -44,11 +44,7 @@ window.onload = function() {
             logoutButton.style.display = 'none'; 
         }
     });
-     
 
-
-
-    
 // Слайдери
 document.addEventListener('DOMContentLoaded', function() {
     const sliders = document.querySelectorAll('.slider, .slider1');
@@ -113,20 +109,16 @@ window.onclick = function(event) {
 }
 
 // меню
-// JavaScript код для скрытия иконки меню при прокрутке вниз
+// skricon
 let prevScrollPos = window.pageYOffset;
 
 window.onscroll = function() {
   let currentScrollPos = window.pageYOffset;
-
   if (prevScrollPos > currentScrollPos) {
-    // Прокрутка вверх
     document.querySelector('.menu__btn').classList.remove('hidden');
   } else {
-    // Прокрутка вниз
     document.querySelector('.menu__btn').classList.add('hidden');
   }
-
   prevScrollPos = currentScrollPos;
 }
 
@@ -142,11 +134,9 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     menuBtn.addEventListener("click", function(event) {
-        event.stopPropagation(); // Зупиняємо подальше поширення події
+        event.stopPropagation();
     });
 });
-
-
 
 // на плеєр
 document.addEventListener('DOMContentLoaded', () => {
@@ -156,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
         item.addEventListener('click', function() {
             const animeTitle = this.dataset.title;
             const episodes = parseInt(this.dataset.episodes);
-            const description = getAnimeDescription(animeTitle); // Отримати опис аніме
+            const description = getAnimeDescription(animeTitle);
             const categories = this.dataset.categories;
             window.location.href = `player.html?title=${animeTitle}&episodes=${episodes}&description=${description}&categories=${categories}`;
         });
@@ -169,7 +159,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const episodes = parseInt(urlParams.get('episodes'));
 
 });
-
 
 function getAnimeDescription(title) {
     switch (title) {

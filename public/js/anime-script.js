@@ -19,7 +19,6 @@ document.addEventListener("DOMContentLoaded", function() {
             categoryMenu.style.display = "block";
         }
     });
-
     document.addEventListener("click", function(event) {
         if (!categoryMenuContainer.contains(event.target) && event.target !== categoryMenuToggle) {
             categoryMenu.style.display = "none";
@@ -35,14 +34,13 @@ document.addEventListener('DOMContentLoaded', () => {
         item.addEventListener('click', function() {
             const animeTitle = this.dataset.title;
             const episodes = parseInt(this.dataset.episodes);
-            const description = getAnimeDescription(animeTitle); // Отримати опис аніме
+            const description = getAnimeDescription(animeTitle);
             const categories = this.dataset.categories.split(',').map(cat => cat.trim());
-            const filteredCategories = categories.filter(cat => cat !== 'Усі'); // Видалення категорії "Усі"
+            const filteredCategories = categories.filter(cat => cat !== 'Усі');
             window.location.href = `player.html?title=${animeTitle}&episodes=${episodes}&description=${description}&categories=${filteredCategories.join(',')}`;
         });
     });
 });
-
 
 function getAnimeDescription(title) {
     switch (title) {
@@ -86,16 +84,13 @@ categoryLinks.forEach(link => {
 });
 });
 
-
 //пошук
 document.addEventListener('DOMContentLoaded', function() {
 const form = document.querySelector('form');
 form.addEventListener('submit', function(event) {
-    event.preventDefault(); // Зупиняємо стандартну поведінку форми
-
-    const searchTerm = document.querySelector('input[name="s"]').value.trim(); // Отримуємо значення поля пошуку
-
-    searchByTitle(searchTerm); // Викликаємо функцію для пошуку за назвою
+    event.preventDefault();
+    const searchTerm = document.querySelector('input[name="s"]').value.trim();
+    searchByTitle(searchTerm);
 });
 });
 
@@ -107,8 +102,8 @@ animeItems.forEach(item => {
     if (animeTitle === title) {
         // Відкрити аніме на плеєрі
         const episodes = parseInt(item.dataset.episodes);
-        const description = getAnimeDescription(animeTitle); // Отримати опис аніме
-        const categories = item.dataset.categories; // Отримати категорії
+        const description = getAnimeDescription(animeTitle);
+        const categories = item.dataset.categories;
         window.location.href = `player.html?title=${animeTitle}&episodes=${episodes}&description=${description}&categories=${categories}`;
     }
 });
