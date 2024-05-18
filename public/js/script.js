@@ -9,7 +9,7 @@ window.onload = function() {
         loginModal.style.display = 'block';
     });
 
-    fetch('/getUsername')
+    fetch('https://diplom-mn2r.onrender.com/getUsername')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok ' + response.statusText);
@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
         logoutButton.style.display = 'none'; 
     }
 });
+
 
 // Слайдери
 document.addEventListener('DOMContentLoaded', function() {
