@@ -560,7 +560,6 @@ input[type="password"] {
 
 
     a#logoutButton{
-        display: none;
         color: var(--color1);
         text-decoration: none;
         padding: 6px 200px;
