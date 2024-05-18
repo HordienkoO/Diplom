@@ -29,14 +29,14 @@ app.get('/register', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'register.html'));
 });
 
-app.get('/getUsername', (req, res) => {
-    console.log('Запит на /getUsername');
-    if (req.session.username) {
-        res.json({ username: req.session.username });
-    } else {
-        res.status(404).json({ error: 'Не знайдено' });
-    }
-});
+// app.get('/getUsername', (req, res) => {
+//     console.log('Запит на /getUsername');
+//     if (req.session.username) {
+//         res.json({ username: req.session.username });
+//     } else {
+//         res.status(404).json({ error: 'Не знайдено' });
+//     }
+// });
 
 app.post('/register', async (req, res) => {
     try {
