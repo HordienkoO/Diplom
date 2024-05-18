@@ -34,7 +34,7 @@ window.onload = function() {
     }
 
     checkUserLogin();
-});
+};
 
 // Слайдери
 document.addEventListener('DOMContentLoaded', function() {
