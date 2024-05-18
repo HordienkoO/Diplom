@@ -9,7 +9,7 @@ window.onload = function() {
         loginModal.style.display = 'block';
     });
 
-    fetch('https://diplom-mn2r.onrender.com/getUsername')
+    fetch('https://diplom-server-ykm9.onrender.com/')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok ' + response.statusText);
