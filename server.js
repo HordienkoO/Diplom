@@ -32,7 +32,7 @@ app.get('/getUsername', (req, res) => {
     if (req.session.username) {
         res.json({ username: req.session.username });
     } else {
-        res.json({ username: '' });
+        res.status(404).json({ error: 'Не знайдено' });
     }
 });
 
