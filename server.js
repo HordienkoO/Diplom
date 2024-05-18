@@ -19,7 +19,7 @@ app.use(session({
     saveUninitialized: true
 }));
 
-// Routes
+// Маршрути
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
@@ -42,37 +42,38 @@ app.post('/register', async (req, res) => {
     }
 });
 
-app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
 app.post('/login', async (req, res) => {
     try {
         const { username, password } = req.body;
         const user = await User.findOne({ username });
-        if (user) {
 
-        } else {
-            res.status(401).send(`<script>alert("Неправильные данные. Попробуйте еще!"); window.location.href = "/";</script>`);
+        if (!user) {
+            return res.status(400).send('User not found');
         }
+
+        if (user.password !== password) {
+            return res.status(400).send('Invalid credentials');
+        }
+
+        req.session.user = { id: user._id, username: user.username };
+        res.redirect('/');
     } catch (error) {
         console.error(error.message);
-        res.status(500).send(`<script>alert("Не удалось! Ошибка: "); window.location.href = "/";</script>` + error.message);
-    }
-});
-
-app.get('/getUsername', (req, res) => {
-    console.log('Запит на /getUsername');
-    if (req.session.username) {
-        res.json({ username: req.session.username });
-    } else {
-        res.status(404).json({ error: 'Не знайдено' });
+        res.status(500).send('Login error: ' + error.message);
     }
 });
 
 app.get('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/');
+});
+
+app.get('/user', (req, res) => {
+    if (req.session.user) {
+        res.json({ username: req.session.user.username });
+    } else {
+        res.status(401).json({ message: 'Not logged in' });
+    }
 });
 
 const PORT = process.env.PORT || 1010;
