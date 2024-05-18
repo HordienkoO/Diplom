@@ -1,48 +1,38 @@
+// Fetch username and display it
 window.onload = function() {
-        document.body.classList.add('loaded');
-        const loginButton = document.getElementById('loginButton');
-        const loginModal = document.getElementById('loginModal');
-        const usernameSpan = document.getElementById('usernameSpan');
-        let loggedIn = false;
+    document.body.classList.add('loaded');
+    const loginButton = document.getElementById('loginButton');
+    const loginModal = document.getElementById('loginModal');
+    const usernameSpan = document.getElementById('usernameSpan');
+    let loggedIn = false;
 
-        loginButton.addEventListener('click', function() {
-            loginModal.style.display = 'block';
-        });
-
-        fetch('/getUsername')
-            .then(response => response.json())
-            .then(data => {
-                const { username } = data;
-                if (username) {
-                    usernameSpan.textContent = username;
-                    loggedIn = true;
-                    loginModal.style.display = 'none';
-                }
-            });
-
-        // Блокуємо вікно після входу
-        const forms = document.querySelectorAll('form');
-        forms.forEach(form => {
-            form.addEventListener('submit', function(event) {
-                if (loggedIn) {
-                    event.preventDefault();
-                    alert('Ви вже увійшли в систему!');
-                }
-            });
-        });
-    };
-
-    document.addEventListener('DOMContentLoaded', function() {
-        const logoutButton = document.getElementById('logoutButton');
-        
-        const isLoggedIn = true;
-    
-        if (isLoggedIn) {
-            logoutButton.style.display = 'block'; 
-        } else {
-            logoutButton.style.display = 'none'; 
-        }
+    loginButton.addEventListener('click', function() {
+        loginModal.style.display = 'block';
     });
+
+    fetch('/getUsername')
+        .then(response => response.json())
+        .then(data => {
+            const { username } = data;
+            if (username) {
+                usernameSpan.textContent = username;
+                loggedIn = true;
+                loginModal.style.display = 'none';
+            }
+        });
+
+    // Prevent form submission if already logged in
+    const forms = document.querySelectorAll('form');
+    forms.forEach(form => {
+        form.addEventListener('submit', function(event) {
+            if (loggedIn) {
+                event.preventDefault();
+                alert('You are already logged in!');
+            }
+        });
+    });
+};
+
 
 // Слайдери
 document.addEventListener('DOMContentLoaded', function() {
