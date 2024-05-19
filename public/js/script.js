@@ -1,4 +1,3 @@
-// Fetch username and display it
 window.onload = function() {
     document.body.classList.add('loaded');
    const loginButton = document.getElementById("loginButton");
