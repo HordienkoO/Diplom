@@ -3,6 +3,7 @@ const session = require('express-session');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path');
+const bcrypt = require('bcryptjs');
 const User = require('./models/user');
 require('dotenv').config();
 
@@ -19,8 +20,6 @@ app.use(session({
     saveUninitialized: true
 }));
 
-// Маршрути
-
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
@@ -32,13 +31,14 @@ app.get('/register', (req, res) => {
 app.post('/register', async (req, res) => {
     try {
         const { username, email, password } = req.body;
+        const hashedPassword = await bcrypt.hash(password, 10);  // Хешуємо пароль
 
-        const user = new User({ username, email, password });
+        const user = new User({ username, email, password: hashedPassword });
         await user.save();
         res.redirect('/login');
     } catch (error) {
         console.error(error.message);
-        res.status(500).send('Registration error: ' + error.message);
+        res.status(500).send('Помилка реєстрації: ' + error.message);
     }
 });
 
@@ -52,18 +52,20 @@ app.post('/login', async (req, res) => {
         const user = await User.findOne({ username });
 
         if (!user) {
-            return res.status(400).send('User not found');
+            return res.status(400).send('Користувач не знайдений');
         }
 
-        if (user.password !== password) {
-            return res.status(400).send('Invalid credentials');
+        const isPasswordValid = await bcrypt.compare(password, user.password);  // Порівнюємо пароль
+
+        if (!isPasswordValid) {
+            return res.status(400).send('Недійсні облікові дані');
         }
 
         req.session.user = { id: user._id, username: user.username };
         res.redirect('/');
     } catch (error) {
         console.error(error.message);
-        res.status(500).send('Login error: ' + error.message);
+        res.status(500).send('Помилка входу: ' + error.message);
     }
 });
 
@@ -76,7 +78,7 @@ app.get('/user', (req, res) => {
     if (req.session.user) {
         res.json({ username: req.session.user.username });
     } else {
-        res.status(401).json({ message: 'Not logged in' });
+        res.status(401).json({ message: 'Не ввійшли в систему' });
     }
 });
 
