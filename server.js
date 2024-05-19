@@ -3,7 +3,7 @@ const session = require('express-session');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const User = require('./models/user');
 require('dotenv').config();
 
@@ -28,24 +28,17 @@ app.get('/register', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'register.html'));
 });
 
-app.get('/getUsername', (req, res) => {
-    if (req.session.username) {
-        res.json({ username: req.session.username });
-    } else {
-        res.json({ username: '' });
-    }
-});
-
 app.post('/register', async (req, res) => {
     try {
         const { username, email, password } = req.body;
-        const hashedPassword = await bcrypt.hash(password, 10);
+        const hashedPassword = await bcrypt.hash(password, 10);  // Хешуємо пароль
+
         const user = new User({ username, email, password: hashedPassword });
         await user.save();
         res.redirect('/login');
     } catch (error) {
         console.error(error.message);
-        res.status(500).send('Registration error: ' + error.message);
+        res.status(500).send('Помилка реєстрації: ' + error.message);
     }
 });
 
@@ -57,26 +50,36 @@ app.post('/login', async (req, res) => {
     try {
         const { username, password } = req.body;
         const user = await User.findOne({ username });
-        if (user) {
-            const isPasswordValid = await bcrypt.compare(password, user.password);
-            if (isPasswordValid) {
-                req.session.username = username;
-                res.send(`<script>alert("Вы вошли в систему! Спасибо, ${username}"); window.location.href = "/";</script>`);
-            } else {
-                res.status(401).send(`<script>alert("Неправильные данные. Попробуйте еще!"); window.location.href = "/";</script>`);
-            }
-        } else {
-            res.status(401).send(`<script>alert("Неправильные данные. Попробуйте еще!"); window.location.href = "/";</script>`);
+
+        if (!user) {
+            return res.status(400).send('Користувач не знайдений');
         }
+
+        const isPasswordValid = await bcrypt.compare(password, user.password);  // Порівнюємо пароль
+
+        if (!isPasswordValid) {
+            return res.status(400).send('Недійсні облікові дані');
+        }
+
+        req.session.user = { id: user._id, username: user.username };
+        res.redirect('/');
     } catch (error) {
         console.error(error.message);
-        res.status(500).send(`<script>alert("Не удалось! Ошибка: "); window.location.href = "/";</script>` + error.message);
+        res.status(500).send('Помилка входу: ' + error.message);
     }
 });
 
 app.get('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/');
+});
+
+app.get('/user', (req, res) => {
+    if (req.session.user) {
+        res.json({ username: req.session.user.username });
+    } else {
+        res.status(401).json({ message: 'Не ввійшли в систему' });
+    }
 });
 
 const PORT = process.env.PORT || 1010;

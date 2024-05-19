@@ -12,3 +12,4 @@
 * MongoDB
 ## Опублікований продукт
 Посилання на опублікований продукт:
+https://diplom-server-ykm9.onrender.com/
