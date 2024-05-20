@@ -334,3 +334,17 @@ function changeEpisode(title, episodeNumber, buttonText) {
     }
     toggleDropdown();
 }
+
+// для другого слайдера на головній отримання данних№"№
+document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const title = urlParams.get('title');
+    const episodes = urlParams.get('episodes');
+    const description = urlParams.get('description');
+    const categories = urlParams.get('categories');
+
+    document.getElementById('anime-title').textContent = title;
+    document.getElementById('anime-description').textContent = description;
+    document.getElementById('anime-categories').textContent = `Категорії: ${categories}`;
+    document.getElementById('anime-episodes').textContent = `Кількість епізодів: ${episodes}`;
+});

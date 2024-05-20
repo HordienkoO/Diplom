@@ -72,13 +72,6 @@ function prevSlide(slider) {
     slider.insertBefore(lastSlide, slides[0]);
 }
 
-// Вподобайки
-function toggleHeart() {
-    var heartIcon = document.querySelector('.heart-icon');
-    heartIcon.classList.toggle('clicked');
-    alert('Тут будуть твої вподобайки!');
-}
-
 // форми реєєстрації та входу
 var loginButton = document.getElementById("loginButton");
 var loginModal = document.getElementById("loginModal");
@@ -168,3 +161,18 @@ function getAnimeDescription(title) {
             return "Опис аніме...";
     }
 }
+
+// для другого сладера передача 
+document.addEventListener('DOMContentLoaded', () => {
+    const sliderItems = document.querySelectorAll('.slider1 .slide');
+
+    sliderItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const animeTitle = this.dataset.title;
+            const episodes = parseInt(this.dataset.episodes);
+            const description = getAnimeDescription(animeTitle);
+            const categories = this.dataset.categories;
+            window.location.href = `player.html?title=${animeTitle}&episodes=${episodes}&description=${description}&categories=${categories}`;
+        });
+    });
+});

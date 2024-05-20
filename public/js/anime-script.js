@@ -100,7 +100,6 @@ const animeItems = document.querySelectorAll('.anime-item');
 animeItems.forEach(item => {
     const animeTitle = item.dataset.title;
     if (animeTitle === title) {
-        // Відкрити аніме на плеєрі
         const episodes = parseInt(item.dataset.episodes);
         const description = getAnimeDescription(animeTitle);
         const categories = item.dataset.categories;
