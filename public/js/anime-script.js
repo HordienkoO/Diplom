@@ -87,7 +87,7 @@ categoryLinks.forEach(link => {
 //пошук
 document.addEventListener('DOMContentLoaded', function() {
 const form = document.querySelector('form');
-form.addEventListener('submit', function(event) {
+form.addEventListener('submitt', function(event) {
     event.preventDefault();
     const searchTerm = document.querySelector('input[name="s"]').value.trim();
     searchByTitle(searchTerm);
