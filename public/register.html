@@ -59,6 +59,26 @@
             color: red;
             margin-top: 5px;
         }
+
+        .all-anime-button1 {
+            background-color: var(--color1);
+            color: #fff;
+            padding: 15px 50px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease-in-out;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: auto;
+        }
+          
+        .all-anime-button1:hover {
+            background-color: var(--color2);
+        }
+        
     </style>
 </head>
 <body>
@@ -70,6 +90,10 @@
         <button type="submit">Реєстрація</button>
         <div class="error" id="error"></div>
     </form>
+    
+    <a href="index.html">
+        <button class="all-anime-button1">Головна</button>
+    </a> 
 
     <script>
         function validateForm() {
