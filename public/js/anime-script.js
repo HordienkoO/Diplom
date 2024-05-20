@@ -86,24 +86,24 @@ categoryLinks.forEach(link => {
 
 //пошук
 document.addEventListener('DOMContentLoaded', function() {
-const form = document.querySelector('form');
-form.addEventListener('submitt', function(event) {
-    event.preventDefault();
-    const searchTerm = document.querySelector('input[name="s"]').value.trim();
-    searchByTitle(searchTerm);
-});
-});
+    const searchButton = document.getElementById('searchButton');
+    searchButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        const searchTerm = document.querySelector('input[name="s"]').value.trim();
+        searchByTitle(searchTerm);
+    });
 
-function searchByTitle(title) {
-const animeItems = document.querySelectorAll('.anime-item');
+    function searchByTitle(title) {
+        const animeItems = document.querySelectorAll('.anime-item');
 
-animeItems.forEach(item => {
-    const animeTitle = item.dataset.title;
-    if (animeTitle === title) {
-        const episodes = parseInt(item.dataset.episodes);
-        const description = getAnimeDescription(animeTitle);
-        const categories = item.dataset.categories;
-        window.location.href = `player.html?title=${animeTitle}&episodes=${episodes}&description=${description}&categories=${categories}`;
+        animeItems.forEach(item => {
+            const animeTitle = item.dataset.title;
+            if (animeTitle === title) {
+                const episodes = parseInt(item.dataset.episodes);
+                const description = getAnimeDescription(animeTitle);
+                const categories = item.dataset.categories;
+                window.location.href = `player.html?title=${animeTitle}&episodes=${episodes}&description=${description}&categories=${categories}`;
+            }
+        });
     }
 });
-}

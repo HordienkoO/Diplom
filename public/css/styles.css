@@ -285,7 +285,7 @@ input[type="search"] {
   width: 200px;
 }
 
-button[type="submitt"] {
+button[type="button"] {
   background-color: var(--color1);
   color: #fff;
   border: none;
