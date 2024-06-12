@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новини</title>
+    <style>
+
+        .news {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        
+        .news img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .news h2 {
+            margin: 0 0 10px;
+        }
+        
+        .news p {
+            margin: 0 0 10px;
+        }
+        
+        .news small {
+            color: #888;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Новини</h1>
+    <div id="newsContainer"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('/news')
+                .then(response => response.json())
+                .then(data => {
+                    const newsContainer = document.getElementById('newsContainer');
+                    data.forEach(news => {
+                        const newsElement = document.createElement('div');
+                        newsElement.className = 'news';
+
+                        if (news.imageUrl) {
+                            const imageElement = document.createElement('img');
+                            imageElement.src = news.imageUrl;
+                            imageElement.alt = news.title;
+                            newsElement.appendChild(imageElement);
+                        }
+
+                        const titleElement = document.createElement('h2');
+                        titleElement.textContent = news.title;
+                        newsElement.appendChild(titleElement);
+
+                        const contentElement = document.createElement('p');
+                        contentElement.textContent = news.content;
+                        newsElement.appendChild(contentElement);
+
+                        const dateElement = document.createElement('small');
+                        dateElement.textContent = new Date(news.createdAt).toLocaleString();
+                        newsElement.appendChild(dateElement);
+
+                        newsContainer.appendChild(newsElement);
+                    });
+                })
+                .catch(error => console.error('Помилка отримання новин:', error));
+        });
+    </script>
+</body>
+</html>

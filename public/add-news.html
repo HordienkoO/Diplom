@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Додати новину</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1>Додати новину</h1>
+    <form id="newsForm" action="/news" method="POST" enctype="multipart/form-data">
+        <label for="title">Заголовок:</label>
+        <input type="text" id="title" name="title" required><br>
+
+        <label for="content">Текст новини:</label>
+        <textarea id="content" name="content" required></textarea><br>
+
+        <label for="image">Фото:</label>
+        <input type="file" id="image" name="image"><br>
+
+        <button type="submit">Додати новину</button>
+    </form>
+
+    <script>
+        document.getElementById('newsForm').addEventListener('submit', function(event) {
+            if (!confirm('Ви впевнені, що хочете додати цю новину?')) {
+                event.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>
