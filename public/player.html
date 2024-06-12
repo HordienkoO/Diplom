@@ -55,6 +55,37 @@
         <div id="description"></div>
         <div id="categories"></div>
     </div>
+    <div class="rating-section">
+        <h3>Оцінити аніме:</h3>
+        <form id="ratingForm">
+            <label>
+                <input type="radio" name="rating" value="1"> 1
+            </label>
+            <label>
+                <input type="radio" name="rating" value="2"> 2
+            </label>
+            <label>
+                <input type="radio" name="rating" value="3"> 3
+            </label>
+            <label>
+                <input type="radio" name="rating" value="4"> 4
+            </label>
+            <label>
+                <input type="radio" name="rating" value="5"> 5
+            </label>
+            <button type="submit">Відправити</button>
+        </form>
+        <div id="averageRating"></div>
+    </div>
+</div>
+
+<div id="commentsSection">
+    <h3>Коментарі:</h3>
+    <div id="commentsList"></div>
+    <form id="commentForm">
+        <textarea name="content" placeholder="Ваш коментар" required></textarea>
+        <button type="submit">Додати коментар</button>
+    </form>
 </div>
 
 <script src="js/player.js"></script>

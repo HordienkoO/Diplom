@@ -85,17 +85,70 @@ categoryLinks.forEach(link => {
 });
 
 //пошук
-document.addEventListener('DOMContentLoaded', function() {
+// document.addEventListener('DOMContentLoaded', function() {
+//     const searchButton = document.getElementById('searchButton');
+//     searchButton.addEventListener('click', function(event) {
+//         event.preventDefault();
+//         const searchTerm = document.querySelector('input[name="s"]').value.trim();
+//         searchByTitle(searchTerm);
+//     });
+
+//     function searchByTitle(title) {
+//         const animeItems = document.querySelectorAll('.anime-item');
+
+//         animeItems.forEach(item => {
+//             const animeTitle = item.dataset.title;
+//             if (animeTitle === title) {
+//                 const episodes = parseInt(item.dataset.episodes);
+//                 const description = getAnimeDescription(animeTitle);
+//                 const categories = item.dataset.categories;
+//                 window.location.href = `player.html?title=${animeTitle}&episodes=${episodes}&description=${description}&categories=${categories}`;
+//             }
+//         });
+//     }
+// });
+
+
+
+
+
+
+
+const searchInput = document.getElementById('searchInput');
+    const autocompleteList = document.getElementById('autocomplete-list');
+    
+    searchInput.addEventListener('input', function() {
+        const searchTerm = searchInput.value.trim().toLowerCase();
+        autocompleteList.innerHTML = '';
+        
+        if (searchTerm.length > 0) {
+            const animeItems = document.querySelectorAll('.anime-item');
+            animeItems.forEach(item => {
+                const animeTitle = item.dataset.title.toLowerCase();
+                if (animeTitle.startsWith(searchTerm)) {
+                    const listItem = document.createElement('div');
+                    listItem.className = 'autocomplete-item';
+                    listItem.innerText = item.dataset.title;
+                    listItem.addEventListener('click', function() {
+                        searchInput.value = item.dataset.title;
+                        autocompleteList.innerHTML = '';
+                        searchByTitle(item.dataset.title);
+                    });
+                    autocompleteList.appendChild(listItem);
+                }
+            });
+        }
+    });
+    
     const searchButton = document.getElementById('searchButton');
     searchButton.addEventListener('click', function(event) {
         event.preventDefault();
-        const searchTerm = document.querySelector('input[name="s"]').value.trim();
+        const searchTerm = searchInput.value.trim();
         searchByTitle(searchTerm);
     });
 
     function searchByTitle(title) {
         const animeItems = document.querySelectorAll('.anime-item');
-
         animeItems.forEach(item => {
             const animeTitle = item.dataset.title;
             if (animeTitle === title) {
@@ -106,4 +159,3 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-});

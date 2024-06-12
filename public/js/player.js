@@ -5,6 +5,91 @@ window.onload = function() {
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const title = urlParams.get('title');
+
+    const loadComments = () => {
+        fetch(`/comments/${title}`)
+        .then(response => response.json())
+        .then(data => {
+            const commentsList = document.getElementById('commentsList');
+            commentsList.innerHTML = '';
+            data.forEach(comment => {
+                const commentElement = document.createElement('div');
+                commentElement.className = 'comment';
+                commentElement.innerHTML = `<strong>${comment.userId.username}:</strong> <p>${comment.content}</p>`;
+                commentsList.appendChild(commentElement);
+            });
+        })
+        .catch(error => console.error('Помилка отримання коментарів:', error));
+    };
+
+    document.getElementById('commentForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const content = this.elements['content'].value;
+
+        fetch('/comments', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ animeTitle: title, content })
+        })
+        .then(response => response.text())
+        .then(data => {
+            alert(data);
+            this.reset();
+            loadComments();
+        })
+        .catch(error => console.error('Помилка додавання коментаря:', error));
+    });
+
+    loadComments();
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const title = urlParams.get('title');
+
+    document.getElementById('ratingForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const rating = document.querySelector('input[name="rating"]:checked').value;
+
+        fetch('/rate', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ animeTitle: title, rating })
+        })
+        .then(response => response.text())
+        .then(data => {
+            alert(data);
+            loadAverageRating();
+        })
+        .catch(error => console.error('Помилка:', error));
+    });
+
+    function loadAverageRating() {
+        fetch(`/ratings/${title}`)
+        .then(response => response.json())
+        .then(data => {
+            const averageRating = data.averageRating || 0;
+            const ratingElement = document.getElementById('averageRating');
+            if (averageRating === 0 && data.averageRating === 0) {
+                ratingElement.textContent = 'Поки немає оцінок';
+            } else {
+                ratingElement.textContent = `Середня оцінка: ${averageRating.toFixed(2)}`;
+            }
+        })
+        .catch(error => console.error('Помилка:', error));
+    }
+
+    loadAverageRating();
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const title = urlParams.get('title');
     const episodes = parseInt(urlParams.get('episodes'));
     const description = urlParams.get('description');
     const categories = urlParams.get('categories');
