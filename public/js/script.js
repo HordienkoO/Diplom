@@ -26,7 +26,10 @@ window.onload = function() {
             if (response.ok) {
                 const data = await response.json();
                 usernameSpan.textContent = data.username;
-            }
+                if (data.username === 'admin') {
+                    const addNewsLink = document.getElementById('addNewsLink');
+                    addNewsLink.style.display = 'block'; // Показуємо посилання "Додати новину" для адміністратора
+            }}
         } catch (error) {
             console.error('Error fetching user data:', error);
         }

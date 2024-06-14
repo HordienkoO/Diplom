@@ -197,14 +197,18 @@ app.post('/news', upload.single('image'), async (req, res) => {
     try {
         const news = new News({ title, content, imageUrl });
         await news.save();
-        res.status(200).send('Новина додана');
+        res.redirect('/viewnews');
     } catch (error) {
         console.error(error.message);
         res.status(500).send('Помилка додавання новини: ' + error.message);
     }
 });
 
-const PORT = process.env.PORT || 4441;
+app.get('/viewnews', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'news.html'));
+});
+
+const PORT = process.env.PORT || 4444;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });

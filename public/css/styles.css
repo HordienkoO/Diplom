@@ -573,3 +573,7 @@ a#logoutButton:hover {
         background-color: var(--color1);
         color: white;
     }
+
+    #addNewsLink{
+        display: none;
+    }

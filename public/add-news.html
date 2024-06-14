@@ -1,31 +1,152 @@
+<!-- color: #6c452d; -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Додати новину</title>
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+        :root {
+            --color1: #95684d;
+            --color2: #ffcdb2;
+            --color3: #fff3e6;
+            --color4: #3d3d3d;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--color1);
+            background: -moz-linear-gradient(left, var(--color1) 0%, var(--color2) 100%);
+            background: -webkit-linear-gradient(left, var(--color1) 0%, var(--color2) 100%);
+            background: linear-gradient(to right, var(--color1) 0%, var(--color2) 100%);
+            color: var(--color4);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+        }
+
+        h1 {
+            color: #6c452d;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background: var(--color2);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            box-sizing: border-box;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        textarea,
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid var(--color1);
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            height: 100px;
+        }
+
+        .custom-file-input {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .custom-file-input input[type="file"] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 0;
+            padding: 0;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            filter: alpha(opacity=0);
+        }
+
+        .file-label {
+            display: inline-block;
+            background: var(--color1);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .file-label:hover {
+            background: var(--color4);
+        }
+
+        button {
+            background: var(--color1);
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease;
+            width: 100%;
+        }
+
+        button:hover {
+            background: var(--color4);
+        }
+    </style>
 </head>
 <body>
     <h1>Додати новину</h1>
     <form id="newsForm" action="/news" method="POST" enctype="multipart/form-data">
         <label for="title">Заголовок:</label>
-        <input type="text" id="title" name="title" required><br>
+        <input type="text" id="title" name="title" required>
 
         <label for="content">Текст новини:</label>
-        <textarea id="content" name="content" required></textarea><br>
+        <textarea id="content" name="content" required></textarea>
 
         <label for="image">Фото:</label>
-        <input type="file" id="image" name="image"><br>
+        <div class="custom-file-input">
+            <label class="file-label" for="image">Оберіть файл</label>
+            <input type="file" id="image" name="image">
+        </div>
 
         <button type="submit">Додати новину</button>
     </form>
+
+    <a href="index.html">
+        <button class="all-anime-button1">Головна</button>
+    </a> 
+
 
     <script>
         document.getElementById('newsForm').addEventListener('submit', function(event) {
             if (!confirm('Ви впевнені, що хочете додати цю новину?')) {
                 event.preventDefault();
             }
+        });
+
+        document.getElementById('image').addEventListener('change', function() {
+            const label = this.nextElementSibling;
+            const fileName = this.files.length ? this.files[0].name : 'Оберіть файл';
+            label.textContent = fileName;
         });
     </script>
 </body>

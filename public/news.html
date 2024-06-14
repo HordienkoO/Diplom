@@ -5,36 +5,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Новини</title>
     <style>
+        :root {
+            --color1: #95684d;
+            --color2: #ffcdb2;
+            --color3: #fff3e6;
+            --color4: #3d3d3d;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--color1);
+            background: -moz-linear-gradient(left, var(--color1) 0%, var(--color2) 100%);
+            background: -webkit-linear-gradient(left, var(--color1) 0%, var(--color2) 100%);
+            background: linear-gradient(to right, var(--color1) 0%, var(--color2) 100%);
+            color: var(--color3);
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #6c452d;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #newsContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
         .news {
-            border: 1px solid #ccc;
-            padding: 10px;
+            background: var(--color2);
+            border: 1px solid var(--color1);
+            padding: 20px;
             margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            box-sizing: border-box;
         }
-        
+
         .news img {
             max-width: 100%;
             height: auto;
+            border-radius: 10px;
+            margin-bottom: 10px;
         }
-        
+
         .news h2 {
             margin: 0 0 10px;
+            color: #6c452d;
         }
-        
+
         .news p {
             margin: 0 0 10px;
+            line-height: 1.5;
+            color: #6c452d;
         }
-        
+
         .news small {
-            color: #888;
+            color: var(--color4);
+            display: block;
+            text-align: right;
+            font-size: 0.9em;
         }
-        
+
+        .all-anime-button1 {
+            background-color: var(--color1);
+            color: #fff;
+            padding: 15px 50px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease-in-out;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: auto;
+        }
+          
+        .all-anime-button1:hover {
+            background-color: var(--color2);
+        }
     </style>
 </head>
 <body>
     <h1>Новини</h1>
     <div id="newsContainer"></div>
-
+    <a href="index.html">
+        <button class="all-anime-button1">Головна</button>
+    </a> 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             fetch('/news')
