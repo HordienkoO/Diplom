@@ -41,22 +41,22 @@
     </div>
     
     <i id="loginButton" class="bx bxs-user"> <span id="usernameSpan"></span></i>
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Увійти до системи</h2>
-            <form id="loginForm" action="/login" method="POST">
-                <input type="text" name="username" placeholder="Логін" required><br>
-                <input type="password" name="password" placeholder="Пароль" required><br>
-                <button type="submit">Вхід</button>
-            </form>
-            <p>Не маєте аккаунту?</p>
-            <a href="register.html" id="registerButton">Реєстрація</a>
-            <br><br>
-            <a href="/logout" id="logoutButton">Вихід</a>
-
-        </div>
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Увійти до системи</h2>
+        <form id="loginForm" action="/login" method="POST">
+            <input type="text" name="username" placeholder="Логін" required><br>
+            <input type="password" name="password" placeholder="Пароль" required><br>
+            <button type="submit">Вхід</button>
+        </form>
+        <p>Не маєте аккаунту?</p>
+        <a href="register.html" id="registerButton">Реєстрація</a>
+        <br><br>
+        <a href="/logout" id="logoutButton" style="display:none;">Вихід</a>
     </div>
+</div>
+
 </header>
 
     <div class ="h11111">

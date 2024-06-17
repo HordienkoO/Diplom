@@ -104,10 +104,15 @@
             if (username.length < 5 || password.length < 5) {
                 error.textContent = "Логін та пароль повинні містити принаймні 5 символів.";
                 return false;
-            } else {
-                error.textContent = "";
-                return true;
             }
+
+            if (username.length > 9 || password.length > 9){
+                error.textContent = "Логін та пароль не повинні містити більше 9 символів.";
+                return false;
+            }
+
+            error.textContent = "";
+            return true;
         }
     </script>
 </body>

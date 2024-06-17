@@ -1,6 +1,6 @@
 window.onload = function() {
     document.body.classList.add('loaded');
-   const loginButton = document.getElementById("loginButton");
+    const loginButton = document.getElementById("loginButton");
     const loginModal = document.getElementById("loginModal");
     const closeButton = document.getElementsByClassName("close")[0];
     const usernameSpan = document.getElementById("usernameSpan");
@@ -26,12 +26,19 @@ window.onload = function() {
             if (response.ok) {
                 const data = await response.json();
                 usernameSpan.textContent = data.username;
+                logoutButton.style.display = "block";
                 if (data.username === 'admin') {
                     const addNewsLink = document.getElementById('addNewsLink');
-                    addNewsLink.style.display = 'block'; // Показуємо посилання "Додати новину" для адміністратора
-            }}
+                    if (addNewsLink) {
+                        addNewsLink.style.display = 'block'; // Показуємо посилання "Додати новину" для адміністратора
+                    }
+                }
+            } else {
+                logoutButton.style.display = "none";
+            }
         } catch (error) {
             console.error('Error fetching user data:', error);
+            logoutButton.style.display = "none";
         }
     }
 
@@ -93,6 +100,8 @@ window.onclick = function(event) {
     loginModal.style.display = "none";
   }
 }
+
+
 
 // меню
 // skricon
