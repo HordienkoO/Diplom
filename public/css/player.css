@@ -423,7 +423,7 @@ a#logoutButton:hover {
 }
 
 #videoPlayer {
-    margin-bottom: 20px; /* Відступ від відеоплеєра до наступного елементу */
+    margin-bottom: 20px;
 }
 
 .episode-dropdown {

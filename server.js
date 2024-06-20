@@ -17,7 +17,7 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json()); // Для обробки JSON запитів
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
     secret: 'secret',
@@ -87,7 +87,6 @@ app.get('/user', (req, res) => {
     }
 });
 
-// Додати нову оцінку
 app.post('/rate', async (req, res) => {
     if (!req.session.user) {
         return res.status(401).send('Необхідно увійти до системи для оцінювання');
@@ -97,15 +96,12 @@ app.post('/rate', async (req, res) => {
     const userId = req.session.user.id;
 
     try {
-        // Перевірити чи існує оцінка від цього користувача для цього аніме
         const existingRating = await Rating.findOne({ userId, animeTitle });
 
         if (existingRating) {
-            // Оновити існуючу оцінку
             existingRating.rating = rating;
             await existingRating.save();
         } else {
-            // Створити нову оцінку
             const newRating = new Rating({ userId, animeTitle, rating });
             await newRating.save();
         }
@@ -117,7 +113,6 @@ app.post('/rate', async (req, res) => {
     }
 });
 
-// Отримати середню оцінку для аніме
 app.get('/ratings/:animeTitle', async (req, res) => {
     const { animeTitle } = req.params;
 
@@ -150,7 +145,6 @@ app.post('/comments', async (req, res) => {
     }
 });
 
-// Отримати коментарі для аніме
 app.get('/comments/:animeTitle', async (req, res) => {
     const { animeTitle } = req.params;
 
@@ -174,7 +168,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-// Маршрут для отримання новин
 app.get('/news', async (req, res) => {
     try {
         const news = await News.find().sort({ createdAt: -1 });
@@ -185,7 +178,6 @@ app.get('/news', async (req, res) => {
     }
 });
 
-// Маршрут для додавання новин
 app.post('/news', upload.single('image'), async (req, res) => {
     if (!req.session.user || req.session.user.username !== 'admin') {
         return res.status(401).send('Тільки адміністратори можуть додавати новини');

@@ -99,18 +99,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const dropdownContent = document.getElementById('dropdownContent');
 
-    for (let i = 1; i <= episodes; i++) {
-        const button = document.createElement('button');
-        button.textContent = `Серія ${i}`;
-        button.setAttribute('data-episode', i);
-        button.onclick = () => changeEpisode(title, i, button.textContent);
-        dropdownContent.appendChild(button);
-    }
- 
-    const firstEpisode = dropdownContent.querySelector('[data-episode="1"]');
-    if (firstEpisode) {
-        firstEpisode.click();
-    }
+        for (let i = 1; i <= episodes; i++) {
+            const button = document.createElement('button');
+            button.textContent = `Серія ${i}`;
+            button.setAttribute('data-episode', i);
+            button.onclick = () => changeEpisode(title, i, button.textContent);
+            dropdownContent.appendChild(button);
+        }
+    
+        const firstEpisode = dropdownContent.querySelector('[data-episode="1"]');
+        if (firstEpisode) {
+            firstEpisode.click();
+        }
 });
 
 function toggleDropdown() {
@@ -412,8 +412,102 @@ function changeEpisode(title, episodeNumber, buttonText) {
                 break;
             default:
                 videoPlayer.src = "";
-        }
+        } }
+        else if(title === 'Вайолет Евергарден' && episodeNumber >= 1 && episodeNumber <= 13){
+            switch (episodeNumber) {
+                case 1:
+                    videoPlayer.src = "https://drive.google.com/file/d/1czVTXM0GUugTvxhz8PMw3GdVMn6-_rDV/preview";
+                    break;
+                case 2:
+                    videoPlayer.src = "https://drive.google.com/file/d/154EZTJAc_arfYAf9S-kAG-mfiW5QkVsj/preview";
+                    break;
+                case 3:
+                    videoPlayer.src = "https://drive.google.com/file/d/1aNBS5foyCbQPI4kfAWpgMx_YOTD-phsd/preview";
+                    break;
+                case 4:
+                    videoPlayer.src = "https://drive.google.com/file/d/1j9oQaVUdGBLcweGLSuNzwLUrA-yA20ja/preview";
+                    break;
+                case 5:
+                    videoPlayer.src = "https://drive.google.com/file/d/1ANVxBhHsBX0MS30D9HLNnxNgPsUKVxZ3/preview";
+                    break;
+                case 6:
+                    videoPlayer.src = "https://drive.google.com/file/d/1WdzSjN-nhStj5zfI43PRN8WGHOmZ1Bdz/preview";
+                    break;
+                case 7:
+                    videoPlayer.src = "https://drive.google.com/file/d/1vopkNXBlI2gPic1n5-D25rA8tDHv_XVq/preview";
+                    break;
+                case 8:
+                    videoPlayer.src = "https://drive.google.com/file/d/1c4_iJQcuu_HZ0cjg8sbhSSRthGCUtaMh/preview";
+                    break;
+                case 9:
+                    videoPlayer.src = "https://drive.google.com/file/d/1nbLHfWk9DBjh6grRKQqBBmpKqlMpvVvn/preview";
+                    break;
+                case 10:
+                    videoPlayer.src = "https://drive.google.com/file/d/1wRigqdLx5Wsz2jffcvsqJuoY2nbxRcmX/preview";
+                    break;
+                case 11:
+                    videoPlayer.src = "https://drive.google.com/file/d/1EisJyOKsJx3bK_zvjkBoa6rpe_49WVkx/preview";
+                    break;
+                case 12:
+                    videoPlayer.src = "https://drive.google.com/file/d/1rVG0wqPSFVk9b9T9zwjr9phtBYLZkw2p/preview";
+                    break;
+                case 13:
+                    videoPlayer.src = "https://drive.google.com/file/d/18otecob-Oyr99T_8He5U6I5hYs60MDt-/preview";
+                    break;
+                default:
+                    videoPlayer.src = "";
+            }
     }
+    else if(title === 'Пять сантиметрів за секунду' && episodeNumber == 1){
+        switch (episodeNumber) {
+            case 1:
+                videoPlayer.src = "https://drive.google.com/file/d/1iDAXJ0PDwAcifhrw-PSnByaKppypa28G/preview";
+                break;
+            default:
+                videoPlayer.src = "";
+        }
+} else if(title === 'Хочу зїсти твою підшлункову' && episodeNumber == 1){
+    switch (episodeNumber) {
+        case 1:
+            videoPlayer.src = "https://drive.google.com/file/d/1NSZxDAGGNIoNfcz8axijeIjriq1U6SJ0/preview";
+            break;
+        default:
+            videoPlayer.src = "";
+    }
+} else if(title === 'Форма голосу' && episodeNumber == 1){
+    switch (episodeNumber) {
+        case 1:
+            videoPlayer.src = "https://drive.google.com/file/d/1c7FsbC8iC04RiEH37nw3u9Shy5AAgEy7/preview";
+            break;
+        default:
+            videoPlayer.src = "";
+    }
+}else if(title === 'Тунель у літо, вихід прощань' && episodeNumber == 1){
+    switch (episodeNumber) {
+        case 1:
+            videoPlayer.src = "https://drive.google.com/file/d/1yQs8aALxF3xXAFH1Q0dTiU2ZgBuS1OhO/preview";
+            break;
+        default:
+            videoPlayer.src = "";
+    }
+}else if(title === 'Літня примара' && episodeNumber == 1){
+    switch (episodeNumber) {
+        case 1:
+            videoPlayer.src = "https://drive.google.com/file/d/1yQs8aALxF3xXAFH1Q0dTiU2ZgBuS1OhO/preview";
+            break;
+        default:
+            videoPlayer.src = "";
+    }
+}else if(title === 'Дитя погоди' && episodeNumber == 1){
+    switch (episodeNumber) {
+        case 1:
+            videoPlayer.src = "https://drive.google.com/file/d/1yQs8aALxF3xXAFH1Q0dTiU2ZgBuS1OhO/preview";
+            break;
+        default:
+            videoPlayer.src = "";
+    }
+}
+
     else {
         videoPlayer.src = "";
     }
