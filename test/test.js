@@ -83,7 +83,6 @@ describe('User Registration, Login and Comments', () => {
 
 
         it('перевірка на додавання коментаря з входом в систему', async () => {
-            // Register and login the user first
             await request(app)
                 .post('/register')
                 .send({ username: 'testuser', email: 'testuser@example.com', password: 'password123' });
