@@ -82,7 +82,7 @@
     </style>
 </head>
 <body>
-    <form action="/register" method="POST" onsubmit="return validateForm()">
+    <form id="registerForm">
         <h2>Реєстрація</h2>
         <input type="text" name="username" id="username" placeholder="Логін" required><br>
         <input type="email" name="email" placeholder="Email" required><br>
@@ -96,6 +96,37 @@
     </a> 
 
     <script>
+        document.getElementById('registerForm').onsubmit = async function(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const formData = new FormData(form);
+            const data = {
+                username: formData.get('username'),
+                email: formData.get('email'),
+                password: formData.get('password')
+            };
+
+            try {
+                const response = await fetch('/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    alert(errorData.message);
+                } else {
+                    window.location.href = '/login';
+                }
+            } catch (error) {
+                alert('Помилка при з\'єднанні з сервером');
+            }
+        };
+
         function validateForm() {
             var username = document.getElementById('username').value;
             var password = document.getElementById('password').value;

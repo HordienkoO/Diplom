@@ -43,7 +43,15 @@ app.post('/register', async (req, res) => {
         res.redirect('/login');
     } catch (error) {
         console.error(error.message);
-        res.status(500).send('Помилка реєстрації: ' + error.message);
+        if (error.code === 11000) {
+            if (error.keyValue.username) {
+                res.status(400).json({ message: 'Користувач з таким логіном вже існує' });
+            } else if (error.keyValue.email) {
+                res.status(400).json({ message: 'Користувач з таким email вже існує' });
+            }
+        } else {
+            res.status(500).json({ message: 'Помилка реєстрації: ' + error.message });
+        }
     }
 });
 
@@ -57,20 +65,20 @@ app.post('/login', async (req, res) => {
         const user = await User.findOne({ username });
 
         if (!user) {
-            return res.status(400).send('Користувач не знайдений');
+            return res.status(400).json({ message: 'Користувач не знайдений' });
         }
 
         const isPasswordValid = await bcrypt.compare(password, user.password);
 
         if (!isPasswordValid) {
-            return res.status(400).send('Недійсні облікові дані');
+            return res.status(400).json({ message: 'Недійсні облікові дані' });
         }
 
         req.session.user = { id: user._id, username: user.username };
         res.redirect('/');
     } catch (error) {
         console.error(error.message);
-        res.status(500).send('Помилка входу: ' + error.message);
+        res.status(500).json({ message: 'Помилка входу: ' + error.message });
     }
 });
 
